@@ -43,11 +43,14 @@ public class ACNode implements Serializable {
 
     public ACNode addBranch(String branch_) {
         ACNode newnode = null;
+//        先查看是否已经含有该字段
         if (!branches.containsKey(branch_)) {
             newnode = new ACNode(branch_);
             newnode.setLevel(this.level + 1);
+//            放入map中
             branches.put(branch_, newnode);
         } else {
+//            如果存在找到该字段
             newnode = (ACNode) branches.get(branch_);
         }
         return newnode;
@@ -76,6 +79,7 @@ public class ACNode implements Serializable {
         return -1;
     }
 
+//    添加敏感词
     public void addFruit(Info fruit_) {
         if (findFruit(fruit_) == -1) {
             this.fruits.add(fruit_);

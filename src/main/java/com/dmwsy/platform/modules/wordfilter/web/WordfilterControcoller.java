@@ -40,8 +40,15 @@ public class WordfilterControcoller {
                 e.printStackTrace();
             }
         }
+        /**
+         * 获取文章内容
+         */
         String word = request.getParameter("word");
         // word = ChineseToEnglish.getPingYin(word);
+
+        /**
+         * 查找敏感词过程
+         */
         List<ACAutomaton.Match> list = WordFilterUtil.getGoldenEyes().findSensitive(word);
         // List<ACAutomaton.Match> list = WordFilterUtil.ge.findSensitive(word);
         List<String> forbidWordList = new ArrayList<String>();

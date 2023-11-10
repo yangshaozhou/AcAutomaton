@@ -17,18 +17,25 @@ public class XEyes {
         this.ac = new ACAutomaton();
     }
 
+    /**
+     * 读取文件
+     * @param paramFile
+     */
     public void indexSensitiveFromFile(File paramFile) {
         try {
             FileReader localFileReader = new FileReader(paramFile);
             BufferedReader localBufferedReader = new BufferedReader(localFileReader);
             int i = 0;
             String str;
+//           每次读取一行，直到读到文件结尾
             while ((str = localBufferedReader.readLine()) != null)
                 if (str.length() != 0) {
                     SensitiveInfo localSensitiveInfo = new SensitiveInfo(i, str);
                     i++;
+//                   先建立tire树
                     this.ac.addBranch(localSensitiveInfo);
                 }
+//            再建立fail链
             this.ac.addBud();
         } catch (IOException localIOException) {
             localIOException.printStackTrace();
